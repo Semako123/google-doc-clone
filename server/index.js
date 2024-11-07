@@ -2,14 +2,13 @@ require("dotenv").config();
 
 io = require("socket.io")(3001, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://google-doc-clone-smoky.vercel.app",
     methods: ["GET", "POST"],
   },
 });
 const db = require("mongoose");
 const Document = require("./Document");
 const User = require("./User");
-
 
 db.connect(process.env.MONGODB_URI);
 
