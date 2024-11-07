@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  background-color: #f9fbfd;
+}
+
+.ql-container.ql-snow {
+  display: flex;
+  justify-content: center;
+  border: none;
+  padding: 50px;
+}
+
+.ql-editor {
+  width: 8in;
+  height: 9in !important;
+  background-color: #fff;
+  padding: 0.5in 0.8in !important;
+  border: 1px solid #d4d4d4;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1), 0 4px 5px rgba(0, 0, 0, 0.06);
+}
+
+.ql-toolbar.ql-snow {
+  margin-left: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f0f4f9;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content{
+  border: none !important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.06);
+
+}
