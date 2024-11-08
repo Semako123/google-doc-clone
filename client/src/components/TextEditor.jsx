@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState, useRef } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { io } from "socket.io-client";
@@ -33,6 +33,8 @@ const EDITOR_OPTIONS = [
 
 const TextEditor = () => {
   const { id } = useParams();
+
+  const hasUpdated = useRef(false);
 
   const { user } = useAuth();
 
@@ -134,8 +136,6 @@ const TextEditor = () => {
   //Update Doc Name
   useEffect(() => {
     if (quill == null || socket == null) return;
-
-    const hasUpdated = useRef(false);
 
     const handler = (name) => {
       setDocName(name);
