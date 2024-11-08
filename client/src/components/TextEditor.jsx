@@ -67,7 +67,7 @@ const TextEditor = () => {
       setDocName(document.name);
       quill.enable();
     });
-  }, [socket, quill, id]);
+  }, [socket, quill, id, setDocName]);
 
   //Setup for socket
   useEffect(() => {
@@ -79,23 +79,26 @@ const TextEditor = () => {
     return () => {
       s.disconnect();
     };
-  }, []);
+  }, [setSocket]);
 
   //setup for editor and wrapper
-  const wrapperRef = useCallback((wrapper) => {
-    if (wrapper == null) return;
+  const wrapperRef = useCallback(
+    (wrapper) => {
+      if (wrapper == null) return;
 
-    wrapper.innerHTML = "";
+      wrapper.innerHTML = "";
 
-    const container = document.createElement("div");
-    wrapper.append(container);
-    const q = new Quill(container, {
-      modules: { toolbar: EDITOR_OPTIONS },
-      theme: "snow",
-    });
-    setQuill(q);
-    q.disable();
-  }, []);
+      const container = document.createElement("div");
+      wrapper.append(container);
+      const q = new Quill(container, {
+        modules: { toolbar: EDITOR_OPTIONS },
+        theme: "snow",
+      });
+      setQuill(q);
+      q.disable();
+    },
+    [setQuill]
+  );
 
   //send doc-changes
   useEffect(() => {
@@ -142,7 +145,7 @@ const TextEditor = () => {
     return () => {
       socket.off("update-name", handler);
     };
-  }, [quill, docName, socket]);
+  }, [quill, docName, socket, setDocName]);
 
   //Broadcast user cursor position on selector/selection change
   useEffect(() => {

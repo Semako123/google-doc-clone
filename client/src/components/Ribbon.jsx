@@ -22,6 +22,16 @@ export default function Ribbon() {
     setIsLogOpen((prevState) => !prevState);
   };
 
+  const handleShare = () => {
+    navigator.clipboard.writeText("Copy this text to clipboard");
+    toast.success(`Your file link has been copied to the clipboard`, {
+      style: {
+        fontSize: "12px",
+        color: "GrayText",
+      },
+    });
+  };
+
   const handleExport = async () => {
     if (quill === null) return;
 
@@ -99,6 +109,9 @@ export default function Ribbon() {
           </Button>
           <Button variant="option" onClick={handlePrint}>
             Print
+          </Button>
+          <Button variant="option" onClick={handleShare}>
+            Share
           </Button>
         </div>
       </div>
