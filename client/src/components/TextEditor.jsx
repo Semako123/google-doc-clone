@@ -71,7 +71,7 @@ const TextEditor = () => {
 
   //Setup for socket
   useEffect(() => {
-    const s = io("http://localhost:3001");
+    const s = io("https://google-doc-clone-cwqe.onrender.com");
     setSocket(s);
     s.on("connect", () => {
       // console.log(s.id);
