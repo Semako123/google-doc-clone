@@ -139,14 +139,10 @@ const TextEditor = () => {
 
     const handler = (name) => {
       setDocName(name);
-      hasUpdated.current = true; // Mark that the name has been updated
     };
 
     // Only emit if it's the initial run or after a name change that wasn't from socket
-    if (!hasUpdated.current) {
-      socket.emit("name-change", docName);
-    }
-
+    socket.emit("name-change", docName);
     socket.on("update-name", handler);
 
     return () => {
