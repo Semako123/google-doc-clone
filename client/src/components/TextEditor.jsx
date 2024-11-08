@@ -135,13 +135,18 @@ const TextEditor = () => {
   useEffect(() => {
     if (quill == null || socket == null) return;
 
+    const hasUpdated = useRef(false);
+
     const handler = (name) => {
-      setTimeout(2000, () => {
-        setDocName(name);
-      });
+      setDocName(name);
+      hasUpdated.current = true; // Mark that the name has been updated
     };
 
-    socket.emit("name-change", docName);
+    // Only emit if it's the initial run or after a name change that wasn't from socket
+    if (!hasUpdated.current) {
+      socket.emit("name-change", docName);
+    }
+
     socket.on("update-name", handler);
 
     return () => {
