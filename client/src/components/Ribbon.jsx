@@ -8,11 +8,13 @@ import { saveAs } from "file-saver";
 import * as quillToWord from "quill-to-word";
 import { EditorContext } from "../context/EditorProvider";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 export default function Ribbon() {
   const { setIsLogOpen, setIsRecentOpen } = useContext(ModalContext);
   const { user, logout } = useAuth();
   const { quill, docName, setDocName, socket } = useContext(EditorContext);
+  const location = useLocation();
 
   const updateDocName = (e) => {
     setDocName(e.target.value);
@@ -23,7 +25,7 @@ export default function Ribbon() {
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText("Copy this text to clipboard");
+    navigator.clipboard.writeText(`https://google-doc-clone-smoky.vercel.app${location.pathname}`);
     toast.success(`Your file link has been copied to the clipboard`, {
       style: {
         fontSize: "12px",
