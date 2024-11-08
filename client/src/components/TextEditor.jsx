@@ -136,7 +136,9 @@ const TextEditor = () => {
     if (quill == null || socket == null) return;
 
     const handler = (name) => {
-      setDocName(name);
+      setTimeout(2000, () => {
+        setDocName(name);
+      });
     };
 
     socket.emit("name-change", docName);
